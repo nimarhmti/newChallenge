@@ -1,9 +1,9 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
+// import menu from "./assets/Icons/menu.png";
+import { Navbar } from "./components/Header/Header";
+import { Sidebar } from "./components/Sidebar/Sidebar";
 
-import menu from "./assets/Icons/menu.png";
-// import { menu } from "./assets/index";
-// import { Container } from "./Components/ui/Container/container";
 
 const theme = {
   color: {
@@ -14,7 +14,8 @@ const theme = {
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <></>
+      <Navbar />
+      <Sidebar />
     </ThemeProvider>
   );
 }
