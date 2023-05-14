@@ -1,5 +1,8 @@
 import React from "react";
-
-export const Sidebar = () => {
-  return <div>Sidebar</div>;
+import { SideBarStyle } from "./Sidebar.style";
+interface Props {
+  isOpen: boolean;
+}
+export const Sidebar = ({ isOpen }: Props) => {
+  return <SideBarStyle open={isOpen}>suuii</SideBarStyle>;
 };
