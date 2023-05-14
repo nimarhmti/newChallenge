@@ -9,6 +9,16 @@ export const SideBarStyle = styled.aside<Props>`
   position: fixed;
   color: ${({ theme }) => theme.text};
   top: 0;
-  transition: all 0.2s ease-out;
+  transition: left 0.3s ease-out;
   left: ${({ open }) => (open ? "0" : "-100%")};
+`;
+
+export const IconWrapper = styled.div`
+  padding-top: 2rem;
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: start;
 `;

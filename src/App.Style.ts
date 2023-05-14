@@ -5,7 +5,5 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
+  background-color: ${({ theme }) => theme.baseContent};
 `;
-// export const Content = styled.dev`
-//   display: ;
-// `;

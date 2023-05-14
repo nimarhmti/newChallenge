@@ -1,13 +1,15 @@
 import React, { useState } from "react";
-import { Details, Logo, NavbarStyle, SelectBox, Timer } from "./Navbar.style";
+import { Details, NavbarStyle, SelectBox, Timer } from "./Navbar.style";
 import menu from "../../assets/Icons/menu.png";
 import { lightMode, darkMode } from "../../Styles/Theme";
+import { Logo, HelperText } from "../../Styles/Ui";
+import { useThemeDetector } from "../../utils/ThemeDetector ";
+import { keys } from "../../Config/Keys";
 
-const LIGHT_THEME = "Light";
-const DARK_THEME = "Dark";
 interface Props {
   count: number;
-  setTheme: (theme: string) => void;
+  onSetTheme: (theme: string) => void;
+  onOpenSidebar: () => void;
 }
 interface themItemModel {
   id: string;
@@ -15,17 +17,20 @@ interface themItemModel {
 }
 
 const multiTheme: themItemModel[] = [
-  { id: LIGHT_THEME, label: LIGHT_THEME },
-  { id: DARK_THEME, label: DARK_THEME },
+  { id: keys.LIGHT_THEME, label: keys.LIGHT_THEME },
+  { id: keys.DARK_THEME, label: keys.DARK_THEME },
 ];
 type HTMLElementEvent<T extends HTMLElement> = Event & {
   target: T;
 };
 
-// use it instead of Event
-let e: HTMLElementEvent<HTMLTextAreaElement>;
-export const Navbar = ({ count, setTheme }: Props) => {
-  const [temp, setTemp] = useState<string>("");
+export const Navbar = ({
+  count,
+  onSetTheme: setTheme,
+  onOpenSidebar,
+}: Props) => {
+  const isDarkTheme = useThemeDetector();
+  const [currentTheme, setCurrentTheme] = useState<string>(isDarkTheme);
   const useMapThemeHandler = ({ id, label }: themItemModel) => (
     <option value={label} key={id} id={id}>
       {label}
@@ -34,15 +39,19 @@ export const Navbar = ({ count, setTheme }: Props) => {
 
   const onChange = (event: React.ChangeEvent<{ value: string }>) => {
     const { value } = event.target;
+    setCurrentTheme(value);
     setTheme(value);
   };
 
+  console.log(currentTheme);
+
   return (
     <NavbarStyle>
-      <Logo src={menu} onClick={() => ""} />
+      <Logo src={menu} onClick={() => onOpenSidebar()} />
       <Details>
+        {!count && <HelperText>Time Is Over!</HelperText>}
         <Timer>{count}</Timer>
-        <SelectBox onChange={onChange}>
+        <SelectBox value={currentTheme} onChange={onChange}>
           {multiTheme.map(useMapThemeHandler)}
         </SelectBox>
       </Details>
