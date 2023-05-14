@@ -1,9 +1,8 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
 // import menu from "./assets/Icons/menu.png";
-import { Navbar } from "./components/Header/Header";
 import { Sidebar } from "./components/Sidebar/Sidebar";
-
+import { Navbar } from "./components/Navbar/Navbar";
 
 const theme = {
   color: {
