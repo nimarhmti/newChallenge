@@ -43,8 +43,6 @@ export const Navbar = ({
     setTheme(value);
   };
 
-  console.log(currentTheme);
-
   return (
     <NavbarStyle>
       <Logo src={menu} onClick={() => onOpenSidebar()} />

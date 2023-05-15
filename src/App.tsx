@@ -18,7 +18,7 @@ function App() {
   useEffect(() => {
     const interval = setInterval(() => {
       if (count > 0) {
-        setCount((prevCount) => --prevCount);
+        setCount(prevCount => --prevCount);
       }
       if (count == 0) {
         clearInterval(interval);
@@ -48,14 +48,14 @@ function App() {
     setThemeMode(theme);
   };
   const openSidebarHandler = () => {
-    setIsOpen((preState) => !preState);
+    setIsOpen(preState => !preState);
   };
   const decreaseCountHandler = () => {
     if (count <= 0) {
       setCount(keys.INITIAL_COUNT);
-    } else setCount((preState) => --preState);
+    } else setCount(preState => --preState);
   };
-  console.log(isDarkTheme);
+
   return (
     <ThemeProvider theme={themeMode == keys.LIGHT_THEME ? lightMode : darkMode}>
       <Container>
